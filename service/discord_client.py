@@ -20,10 +20,10 @@ async def countdown():
     channel = client.get_channel(777301286390726663)
     timedelta = start_time - now
     messages = await channel.history(limit=300).flatten()
-    res=[message for message in messages if message.content[0:19] == 'Det roliga start om']
+    res=[message for message in messages if message.content[0:21] == 'Det roliga startar om']
     if len(res) > 0:
         await res[0].edit(content=
-            f"Det roliga start om: {str(timedelta).split('.')[0]}")
+            f"Det roliga startar om: {str(timedelta).split('.')[0]}")
     else:
         await channel.send(
-            f"Det roliga start om: {str(timedelta).split('.')[0]}")
+            f"Det roliga startar om: {str(timedelta).split('.')[0]}")
