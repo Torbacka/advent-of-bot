@@ -2,7 +2,7 @@ import asyncio
 import os
 
 from dotenv import load_dotenv
-
+from datetime import datetime
 from service.aoc_client import retrieve_leaderboard
 from service.discord_client import client, send_congratulations, countdown
 
@@ -26,6 +26,7 @@ async def congratulate_competitor():
         await send_congratulations(message)
     await countdown()
     await client.close()
+    print(f"Done executing {datetime.now()}", )
 
 
 async def main():
