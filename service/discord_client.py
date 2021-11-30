@@ -19,7 +19,7 @@ async def countdown():
     await client.wait_until_ready()
     channel = client.get_channel(777301286390726663)
     timedelta = start_time - now
-    messages = await channel.history(limit=300).flatten()
+    messages = await channel.history(limit=10).flatten()
     res=[message for message in messages if message.content[0:21] == 'Det roliga startar om']
     if len(res) > 0:
         await res[0].edit(content=
