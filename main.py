@@ -24,8 +24,8 @@ async def congratulate_competitor():
             message += '\n\n'
         message += f"Day {day}\n"
         message += '\n'.join(user_messages)
-   # if len(message) > 0:
-        # await send_congratulations(message)
+    if len(message) > 0:
+        await send_congratulations(message)
     message = ""
     for day, user_messages in leaderboard3.items():
         if len(message) > 0:
