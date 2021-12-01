@@ -13,13 +13,13 @@ AOC_COOKIE = os.getenv("AOC_COOKIE")
 
 async def retrieve_leaderboard(board_id):
     async with aiohttp.ClientSession() as session:
-        async with session.get(url=f"https://adventofcode.com/2020/leaderboard/private/view/{board_id}.json",
+        async with session.get(url=f"https://adventofcode.com/2021/leaderboard/private/view/{board_id}.json",
                                headers={'Cookie': AOC_COOKIE}) as response:
             leaderboard = await response.json()
             print(leaderboard)
             message = dict()
-            if isfile(f"data/leaderboard_{board_id}.json"):
-                with open(f"data/leaderboard_{board_id}.json", "r") as old_leaderboard_file:
+            if isfile(f"data/leaderboard_2021_{board_id}.json"):
+                with open(f"data/leaderboard_2021_{board_id}.json", "r") as old_leaderboard_file:
                     old_leaderboard = json.load(old_leaderboard_file)
                     if leaderboard == old_leaderboard:
                         return message
@@ -48,7 +48,7 @@ async def retrieve_leaderboard(board_id):
 
                                 else:
                                     message[day].append(await extract_message(day, user))
-            with open(f"data/leaderboard_{board_id}.json", "w") as old_leaderboard_file:
+            with open(f"data/leaderboard_2021_{board_id}.json", "w") as old_leaderboard_file:
                 json.dump(leaderboard, old_leaderboard_file)
             return message
 
