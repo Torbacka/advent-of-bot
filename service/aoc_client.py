@@ -7,7 +7,7 @@ import aiohttp
 from dotenv import load_dotenv
 
 load_dotenv()
-start_date = datetime(2020, 12, 1, 6, 0)
+start_date = datetime(2021, 12, 1, 6, 0)
 AOC_COOKIE = os.getenv("AOC_COOKIE")
 
 
