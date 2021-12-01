@@ -4,7 +4,8 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 from service.aoc_client import retrieve_leaderboard
-from service.discord_client import client, send_congratulations, countdown
+from service.discord_client import client, send_congratulations
+from service.slack_client import send
 
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
@@ -15,6 +16,7 @@ async def congratulate_competitor():
         os.makedirs('data')
     leaderboard1 = await retrieve_leaderboard("141549")
     leaderboard2 = await retrieve_leaderboard("277430")
+    leaderboard3 = await retrieve_leaderboard("1518258")
     leaderboards = {**leaderboard1, **leaderboard2}
     message = ""
     for day, user_messages in leaderboards.items():
@@ -22,9 +24,16 @@ async def congratulate_competitor():
             message += '\n\n'
         message += f"Day {day}\n"
         message += '\n'.join(user_messages)
+   # if len(message) > 0:
+        # await send_congratulations(message)
+    message = ""
+    for day, user_messages in leaderboard3.items():
+        if len(message) > 0:
+            message += '\n\n'
+        message += f"Day {day}\n"
+        message += '\n'.join([message.replace('<:silver_star:783234781017538590>', ':silver_star:') for message in user_messages])
     if len(message) > 0:
-        await send_congratulations(message)
-    await countdown()
+        await send(message)
     await client.close()
     print(f"Done executing {datetime.now()}", )
 
