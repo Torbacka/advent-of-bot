@@ -1,8 +1,9 @@
 import asyncio
 import os
+from datetime import datetime
 
 from dotenv import load_dotenv
-from datetime import datetime
+
 from service.aoc_client import retrieve_leaderboard
 from service.discord_client import client, send_congratulations
 from service.slack_client import send
@@ -31,7 +32,8 @@ async def congratulate_competitor():
         if len(message) > 0:
             message += '\n\n'
         message += f"Day {day}\n"
-        message += '\n'.join([message.replace('<:silver_star:783234781017538590>', ':silver_star:') for message in user_messages])
+        message += '\n'.join(
+            [message.replace('<:silver_star:783234781017538590>', ':second_place_medal:') for message in user_messages])
     if len(message) > 0:
         await send(message)
     await client.close()
