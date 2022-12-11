@@ -14,4 +14,4 @@ async def send(message):
                                    "text": message
                                }) as response:
                 body = await response.json()
-                print(f"Something went wrong with posting to slack {response.status}, {body}")
+                print(f"Slack status {response.status}, {body}")

@@ -32,8 +32,12 @@ async def congratulate_competitor():
         if len(message) > 0:
             message += '\n\n'
         message += f"Day {day}\n"
-        message += '\n'.join(
-            [message.replace('<:silver_star:783234781017538590>', ':second_place_medal:') for message in user_messages])
+
+        for mes in user_messages:
+            mes = mes.replace('<:silver_star:783234781017538590>', ':second_place_medal:')
+            mes = mes.replace('<:delta:1049367242191687730>', ':delta:')
+            message += f"{mes}\n"
+
     if len(message) > 0:
         await send(message)
     await client.close()

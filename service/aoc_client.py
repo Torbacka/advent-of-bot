@@ -59,6 +59,6 @@ async def extract_message(day, user):
     part1 = datetime.fromtimestamp(int(star_times['1']['get_star_ts']))
     if '2' in star_times:
         part2 = datetime.fromtimestamp(int(star_times['2']['get_star_ts']))
-        return f"{user['name']} <:silver_star:783234781017538590>  {str(part1 - day_time)} :star:  {str(part2 - day_time)}"
+        return f"{user['name']} <:silver_star:783234781017538590>  {str(part1 - day_time)}  :star:  {str(part2 - day_time)}  <:delta:1049367242191687730>  {str(part2 - part1)}"
     else:
         return f"{user['name']} <:silver_star:783234781017538590>  {str(part1 - day_time)}"
